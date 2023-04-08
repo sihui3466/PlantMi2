@@ -34,8 +34,7 @@
             android:parentActivityName=".StartPage" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.PlantMi"
-            android:parentActivityName=".PlantProfilePage" />
+            android:theme="@style/Theme.PlantMi" />
         <activity
             android:name=".PlantProfilePage"
             android:theme="@style/Theme.PlantMi" />

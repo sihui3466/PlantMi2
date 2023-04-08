@@ -16,10 +16,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
-    Button timeBtn, logoutBtn, waterButton;
+    Button timeBtn, waterButton;
     FirebaseAuth auth;
     FirebaseUser user;
-    TextView textView;
     private ImageView imageView;
 
     DatabaseReference waterRef;
@@ -28,46 +27,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        logoutBtn=findViewById(R.id.logout);
         auth=FirebaseAuth.getInstance();
         timeBtn=findViewById(R.id.setTimeButton);
-        waterButton=findViewById(R.id.waterButton);
-        textView=findViewById(R.id.user_email);
+//        waterButton=findViewById(R.id.waterButton);
         user=auth.getCurrentUser();
-        if (user==null){
-            Intent intent = new Intent(MainActivity.this, PlantProfilePage.class);
-            startActivity(intent);
-            finish();
-        }
-        else {
-            textView.setText(user.getEmail());
-        }
         //TODO 1.6 for timeButton, invoke the setOnClickListener method
-        timeBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent intent = new Intent(MainActivity.this, PlantProfilePage.class);
-                startActivity(intent);
-            }
-        });
+//        timeBtn.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//                Intent intent = new Intent(MainActivity.this, PlantProfilePage.class);
+//                startActivity(intent);
+//            }
+//        });
         
-        waterRef = FirebaseDatabase.getInstance().getReference().child("water_plant").child("value");
-        waterButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                waterRef.setValue(true);
-            }
-        });
-        
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(MainActivity.this, LoginPage.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+//        waterRef = FirebaseDatabase.getInstance().getReference().child("water_plant").child("value");
+//        waterButton.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//                waterRef.setValue(true);
+//            }
+//        });
+
     }
 
 }

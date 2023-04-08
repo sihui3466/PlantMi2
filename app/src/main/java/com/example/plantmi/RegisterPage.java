@@ -26,10 +26,11 @@ import com.google.firebase.database.FirebaseDatabase;
 public class RegisterPage extends AppCompatActivity {
     Button registerBtn, loginBtn;
     FirebaseAuth mAuth;
-    TextInputEditText addEmail, addPassword, addPasswordConfirm;
+    TextInputEditText addEmail, addPassword,addPasswordConfirm;
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
     private User user;
+    private Plant plant;
 
     @Override
     public void onStart() {
@@ -54,7 +55,6 @@ public class RegisterPage extends AppCompatActivity {
         addPasswordConfirm = findViewById(R.id.addPasswordConfirm);
 
 
-
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,14 +71,11 @@ public class RegisterPage extends AppCompatActivity {
                 password=addPassword.getText().toString();
                 String passwordConfirm = addPasswordConfirm.getText().toString();
 
-                user = new User(email,"Radish","Hi! I am your beloved pet!");
+                plant = new Plant("Radish","Hi! I am your beloved pet!");
+                user = new User(email);
 
                 if(TextUtils.isEmpty(email)){
                     Toast.makeText(RegisterPage.this,"Enter email address", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                    Toast.makeText(RegisterPage.this,"Enter a valid email address", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(TextUtils.isEmpty(password)){
@@ -95,10 +92,12 @@ public class RegisterPage extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(RegisterPage.this, "Account created successfully!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RegisterPage.this, "Account success!",Toast.LENGTH_SHORT).show();
+
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     updateUI(user);
-                                    Intent intent = new Intent(RegisterPage.this, LoginPage.class);
+
+                                    Intent intent = new Intent(RegisterPage.this,LoginPage.class);
                                     startActivity(intent);
                                     finish();
                                 } else {
@@ -114,8 +113,6 @@ public class RegisterPage extends AppCompatActivity {
                                         Toast.makeText(RegisterPage.this, "Registration failed. Try again later.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
-
-
                             }
 
                             private void updateUI(FirebaseUser currentUser) {
@@ -125,7 +122,9 @@ public class RegisterPage extends AppCompatActivity {
 
                                     String UID = currentUser.getUid();
                                     DatabaseReference userRef = databaseReference.child("users");//Create child node reference
+                                    DatabaseReference plantRef = databaseReference.child("plants");
                                     userRef.child(UID).setValue(user);//Insert value to child node
+                                    plantRef.child(UID).setValue(plant);
                                 }
                             }
 
