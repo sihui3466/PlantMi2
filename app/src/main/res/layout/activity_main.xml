@@ -52,6 +52,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="500dp"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/btn_bg"
         android:fontFamily="@font/lato_bold"
         android:text="Set Time"
