@@ -29,25 +29,43 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         auth=FirebaseAuth.getInstance();
         timeBtn=findViewById(R.id.setTimeButton);
-//        waterButton=findViewById(R.id.waterButton);
+        waterButton=findViewById(R.id.waterButton);
         user=auth.getCurrentUser();
-        //TODO 1.6 for timeButton, invoke the setOnClickListener method
-//        timeBtn.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                Intent intent = new Intent(MainActivity.this, PlantProfilePage.class);
-//                startActivity(intent);
-//            }
-//        });
         
-//        waterRef = FirebaseDatabase.getInstance().getReference().child("water_plant").child("value");
-//        waterButton.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                waterRef.setValue(true);
-//            }
-//        });
+        waterRef = FirebaseDatabase.getInstance().getReference().child("water_plant").child("value");
+        waterButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                waterRef.setValue(true);
+            }
+            waterRef.setValue(false);
+        });
 
+    }
+    public void popupTime(View view){
+        TimePickerDialog.OnTimeSetListener setTime=new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int hourSelect, int minuteSelect) {
+                hour=hourSelect;
+                minute=minuteSelect;
+                time=String.format(Locale.getDefault(),"%02d:%02d",hour,minute);
+                timeBtn.setText("Watering at "+time);
+            }
+        };
+        Date currentTime = Calendar. getInstance(). getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+        String formattedTime = dateFormat.format(currentTime);
+
+//        if (formattedTime==time){
+//            Toast.makeText(MainActivity.this,"Watering start", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//        else{
+//            Toast.makeText(MainActivity.this, "Login Failed. Please try again ^.^", Toast.LENGTH_SHORT);
+//        }
+        TimePickerDialog timePickerDialog=new TimePickerDialog(this, setTime,hour,minute,true);
+        timePickerDialog.setTitle("Select Time");
+        timePickerDialog.show();
     }
 
 }
