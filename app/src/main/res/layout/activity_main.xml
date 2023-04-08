@@ -1,63 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:background="@color/white"
-    android:gravity="center">
+    android:background="@color/white">
 
-    <TextView
-        android:id="@+id/user_email"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Hello!"
-        android:textStyle="bold"
-        android:textSize="15sp"
-        android:textColor="#000"/>
-
-    <Button
-        android:id="@+id/logout"
-        android:text="Logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageButton
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:src="@drawable/backbtn"
+        android:backgroundTint="@android:color/transparent"
+        android:scaleType="centerInside"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:padding="10dp"
-        android:textColor="#000"/>
+        android:layout_alignParentLeft="true" />
+
+    <ImageButton
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:src="@drawable/waterbtn"
+        android:backgroundTint="@android:color/transparent"
+        android:scaleType="centerInside"
+        android:layout_centerHorizontal="true"
+        android:elevation="1000dp"
+        android:layout_marginTop="110dp"/>
 
     <ImageView
         android:id="@+id/charaImageView"
-        android:layout_gravity="center"
-        android:layout_width="413dp"
-        android:layout_height="290dp"
-        android:src="@drawable/waterme"
-        android:layout_marginTop="50dp"/>
+        android:layout_width="354dp"
+        android:layout_height="219dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="220dp"
+        android:src="@drawable/plantmi_base"/>
+
+    <ProgressBar
+        android:layout_width="450dp"
+        android:layout_height="450dp"
+        android:layout_marginTop="80dp"
+        android:indeterminateOnly="false"
+        android:progressDrawable="@drawable/progress_bar"
+        android:layout_centerHorizontal="true"
+        android:max="200"
+        android:progress="200"
+        android:rotation="270" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/setTimeButton"
+        android:onClick="popupTime"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="500dp"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/btn_bg"
         android:fontFamily="@font/lato_bold"
         android:text="Set Time"
-        android:textColor="@color/text_color">
+        android:textColor="@color/text_color"
+        >
     </androidx.appcompat.widget.AppCompatButton>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/waterButton"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/btn_bg"
-        android:fontFamily="@font/lato_bold"
-        android:text="Start Watering"
-        android:textColor="@color/text_color">
-    </androidx.appcompat.widget.AppCompatButton>
-    
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/waterButton"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:background="@drawable/btn_bg"-->
+<!--        android:fontFamily="@font/lato_bold"-->
+<!--        android:text="Start Watering"-->
+<!--        android:textColor="@color/text_color">-->
+<!--    </androidx.appcompat.widget.AppCompatButton>-->
 
-</LinearLayout>
+
+</RelativeLayout>

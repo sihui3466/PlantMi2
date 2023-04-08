@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
@@ -24,10 +26,11 @@ import com.google.firebase.database.FirebaseDatabase;
 public class RegisterPage extends AppCompatActivity {
     Button registerBtn, loginBtn;
     FirebaseAuth mAuth;
-    TextInputEditText addEmail, addPassword;
+    TextInputEditText addEmail, addPassword,addPasswordConfirm;
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
     private User user;
+    private Plant plant;
 
     @Override
     public void onStart() {
@@ -49,6 +52,7 @@ public class RegisterPage extends AppCompatActivity {
         loginBtn=findViewById(R.id.loginbutton);
         addEmail=findViewById(R.id.addEmail);
         addPassword=findViewById(R.id.addPassword);
+        addPasswordConfirm = findViewById(R.id.addPasswordConfirm);
 
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -63,9 +67,12 @@ public class RegisterPage extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 String email,password;
-                email=addEmail.getText().toString();
+                email=addEmail.getText().toString().trim();
                 password=addPassword.getText().toString();
-                user = new User(email,"Radish","Hi! I am your beloved pet!");
+                String passwordConfirm = addPasswordConfirm.getText().toString();
+
+                plant = new Plant("Radish","Hi! I am your beloved pet!");
+                user = new User(email);
 
                 if(TextUtils.isEmpty(email)){
                     Toast.makeText(RegisterPage.this,"Enter email address", Toast.LENGTH_SHORT).show();
@@ -73,6 +80,10 @@ public class RegisterPage extends AppCompatActivity {
                 }
                 if(TextUtils.isEmpty(password)){
                     Toast.makeText(RegisterPage.this,"Enter password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(!password.equals(passwordConfirm)){
+                    Toast.makeText(RegisterPage.this,"Passwords do not match", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 mAuth.createUserWithEmailAndPassword(email, password)
@@ -91,7 +102,16 @@ public class RegisterPage extends AppCompatActivity {
                                     finish();
                                 } else {
                                     // If sign in fails, display a message to the user.
-                                    Toast.makeText(RegisterPage.this, "Registration failed. Try a longer password!",Toast.LENGTH_SHORT).show();
+                                    if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                        // The email address is already in use
+                                        Toast.makeText(RegisterPage.this, "This email address is already in use.", Toast.LENGTH_SHORT).show();
+                                    } else if (task.getException() instanceof FirebaseAuthWeakPasswordException) {
+                                        // The password is too short
+                                        Toast.makeText(RegisterPage.this, "The password is too short. Please enter a longer password.", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        // Any other error
+                                        Toast.makeText(RegisterPage.this, "Registration failed. Try again later.", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             }
 
@@ -102,7 +122,9 @@ public class RegisterPage extends AppCompatActivity {
 
                                     String UID = currentUser.getUid();
                                     DatabaseReference userRef = databaseReference.child("users");//Create child node reference
+                                    DatabaseReference plantRef = databaseReference.child("plants");
                                     userRef.child(UID).setValue(user);//Insert value to child node
+                                    plantRef.child(UID).setValue(plant);
                                 }
                             }
 

@@ -2,6 +2,7 @@ package com.example.plantmi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,65 +10,70 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
-    Button timeBtn, logoutBtn, waterButton;
+    Button timeBtn, waterButton;
     FirebaseAuth auth;
     FirebaseUser user;
-    TextView textView;
     private ImageView imageView;
 
     DatabaseReference waterRef;
-
+    private int hour,minute;
+    private String time;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        logoutBtn=findViewById(R.id.logout);
         auth=FirebaseAuth.getInstance();
         timeBtn=findViewById(R.id.setTimeButton);
-        waterButton=findViewById(R.id.waterButton);
-        textView=findViewById(R.id.user_email);
+        //waterButton=findViewById(R.id.waterButton);
         user=auth.getCurrentUser();
-        if (user==null){
-            Intent intent = new Intent(MainActivity.this, PlantProfilePage.class);
-            startActivity(intent);
-            finish();
-        }
-        else {
-            textView.setText(user.getEmail());
-        }
-        //TODO 1.6 for timeButton, invoke the setOnClickListener method
-        timeBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent intent = new Intent(MainActivity.this, PlantProfilePage.class);
-                startActivity(intent);
-            }
-        });
         
-        waterRef = FirebaseDatabase.getInstance().getReference().child("water_plant").child("value");
-        waterButton.setOnClickListener(new View.OnClickListener(){
+//         waterRef = FirebaseDatabase.getInstance().getReference().child("water_plant").child("value");
+//         waterButton.setOnClickListener(new View.OnClickListener(){
+//             @Override
+//             public void onClick(View view){
+//                 waterRef.setValue(true);
+//             }
+//             waterRef.setValue(false);
+//         });
+
+    }
+    public void popupTime(View view){
+        TimePickerDialog.OnTimeSetListener setTime=new TimePickerDialog.OnTimeSetListener() {
             @Override
-            public void onClick(View view){
-                waterRef.setValue(true);
+            public void onTimeSet(TimePicker timePicker, int hourSelect, int minuteSelect) {
+                hour=hourSelect;
+                minute=minuteSelect;
+                time=String.format(Locale.getDefault(),"%02d:%02d",hour,minute);
+                timeBtn.setText("Watering at "+time);
             }
-        });
-        
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(MainActivity.this, LoginPage.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+        };
+        Date currentTime = Calendar. getInstance(). getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+        String formattedTime = dateFormat.format(currentTime);
+
+//        if (formattedTime==time){
+//            Toast.makeText(MainActivity.this,"Watering start", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//        else{
+//            Toast.makeText(MainActivity.this, "Login Failed. Please try again ^.^", Toast.LENGTH_SHORT);
+//        }
+        TimePickerDialog timePickerDialog=new TimePickerDialog(this, setTime,hour,minute,true);
+        timePickerDialog.setTitle("Select Time");
+        timePickerDialog.show();
     }
 
 }
