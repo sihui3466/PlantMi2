@@ -32,14 +32,14 @@ public class MainActivity extends AppCompatActivity {
         waterButton=findViewById(R.id.waterButton);
         user=auth.getCurrentUser();
         
-        waterRef = FirebaseDatabase.getInstance().getReference().child("water_plant").child("value");
-        waterButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                waterRef.setValue(true);
-            }
-            waterRef.setValue(false);
-        });
+//         waterRef = FirebaseDatabase.getInstance().getReference().child("water_plant").child("value");
+//         waterButton.setOnClickListener(new View.OnClickListener(){
+//             @Override
+//             public void onClick(View view){
+//                 waterRef.setValue(true);
+//             }
+//             waterRef.setValue(false);
+//         });
 
     }
     public void popupTime(View view){
