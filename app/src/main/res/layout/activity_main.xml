@@ -51,23 +51,24 @@
         android:onClick="popupTime"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="500dp"
         android:background="@drawable/btn_bg"
         android:fontFamily="@font/lato_bold"
         android:text="Set Time"
-        android:textColor="@color/text_color">
+        android:textColor="@color/text_color"
+        >
     </androidx.appcompat.widget.AppCompatButton>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/waterButton"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/btn_bg"
-        android:fontFamily="@font/lato_bold"
-        android:text="Start Watering"
-        android:textColor="@color/text_color">
-    </androidx.appcompat.widget.AppCompatButton>
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/waterButton"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:background="@drawable/btn_bg"-->
+<!--        android:fontFamily="@font/lato_bold"-->
+<!--        android:text="Start Watering"-->
+<!--        android:textColor="@color/text_color">-->
+<!--    </androidx.appcompat.widget.AppCompatButton>-->
 
 
 </RelativeLayout>

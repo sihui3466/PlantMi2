@@ -2,6 +2,7 @@ package com.example.plantmi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,11 +10,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     Button timeBtn, waterButton;
@@ -22,14 +29,15 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imageView;
 
     DatabaseReference waterRef;
-
+    private int hour,minute;
+    private String time;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         auth=FirebaseAuth.getInstance();
         timeBtn=findViewById(R.id.setTimeButton);
-        waterButton=findViewById(R.id.waterButton);
+        //waterButton=findViewById(R.id.waterButton);
         user=auth.getCurrentUser();
         
 //         waterRef = FirebaseDatabase.getInstance().getReference().child("water_plant").child("value");
