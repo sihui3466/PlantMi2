@@ -1,8 +1,11 @@
 package com.example.plantmi;
 
+import static com.example.plantmi.PlantProfilePage.historyDataMoisture;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import java.sql.Timestamp;
 import java.util.Objects;
 
 
@@ -28,12 +33,13 @@ public class PlantStatus extends AppCompatActivity {
 
     View slidingBar;
     DatabaseReference rootDatabaseReference;
-    DatabaseReference databaseReference;
     DatabaseReference descRootDatabaseReference;
     DatabaseReference nameRootDatabaseReference;
     private TextView moistureData;
     private TextView lightData;
     ImageButton editBtn;
+    Button historyMoistureBtn;
+    Button historyLightBtn;
     TextView nameOfPlant, descOfPlant;
     SensorLight sensorLight;
     SensorSoil sensorSoil;
@@ -45,6 +51,8 @@ public class PlantStatus extends AppCompatActivity {
 
         slidingBar = findViewById(R.id.plantStatusSlidingBar);
         editBtn = findViewById(R.id.edit);
+        historyMoistureBtn = findViewById(R.id.historyMoistureButton);
+        historyLightBtn = findViewById(R.id.historyLightButton);
         nameOfPlant = findViewById(R.id.name);
         descOfPlant = findViewById(R.id.desc);
 
@@ -60,6 +68,21 @@ public class PlantStatus extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(PlantStatus.this, EditPlant.class);
+                startActivity(i);
+            }
+        });
+
+        historyMoistureBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(PlantStatus.this, HistoryMoisture.class);
+                startActivity(i);
+            }
+        });
+        historyLightBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(PlantStatus.this, HistoryLight.class);
                 startActivity(i);
             }
         });
@@ -104,7 +127,6 @@ public class PlantStatus extends AppCompatActivity {
             }
         });
 
-        databaseReference = rootDatabaseReference.child("sensor_data");
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         String userUID = user.getUid();

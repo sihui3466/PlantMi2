@@ -43,6 +43,16 @@
             android:theme="@style/Theme.PlantMi"
             android:parentActivityName=".PlantProfilePage" />
         <activity
+            android:name=".HistoryMoisture"
+            android:theme="@style/Theme.PlantMi"
+            android:parentActivityName=".PlantStatus"
+            android:exported="true" />
+        <activity
+            android:name=".HistoryLight"
+            android:theme="@style/Theme.PlantMi"
+            android:parentActivityName=".PlantStatus"
+            android:exported="true" />
+        <activity
             android:name=".EditPlant"
             android:theme="@style/Theme.PlantMi" />
         <activity
