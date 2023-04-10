@@ -132,7 +132,7 @@ public class PlantStatus extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 sensorLight = snapshot.getValue(SensorLight.class);
                 Log.d("Firebase",sensorLight.getValue().toString());
-                lightData.setText(sensorLight.getValue().toString() + "units");
+                lightData.setText(sensorLight.getValue().toString() + "lux");
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

@@ -63,6 +63,10 @@
         <activity
             android:name=".EditUser"
             android:theme="@style/Theme.PlantMi" />
+        <activity
+            android:name=".Timer"
+            android:theme="@style/Theme.PlantMi"/>
+        <receiver android:name=".MyBroadcastReceiver"/>
     </application>
 
 </manifest>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Timer"
+    android:background="@color/white">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/historybox"
+        android:elevation="0dp"
+        android:scaleType="fitXY"></androidx.appcompat.widget.AppCompatButton>
+
+    <ImageButton
+        android:id="@+id/exitbtntimer"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@android:color/transparent"
+        android:elevation="200dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/exitbtn" />
+
+    <TimePicker
+        android:id="@+id/timePicker"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:elevation="100dp"/>
+
+    <Button
+        android:id="@+id/toggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="500dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/lato_bold"
+        android:onClick="OnClicked"
+        android:text="Set Time"
+        android:textColor="@color/text_color"
+        android:checked="false"
+        android:textSize="15dp" />
+
+</RelativeLayout>
