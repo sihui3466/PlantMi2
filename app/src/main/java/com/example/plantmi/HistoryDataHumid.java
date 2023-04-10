@@ -2,6 +2,7 @@ package com.example.plantmi;
 
 import java.util.ArrayList;
 
+// class for operations of arraylist containing humidity data
 public class HistoryDataHumid implements HistoryDataSource{
     private ArrayList<CardData> historyHumidArrayList;
 
@@ -36,7 +37,6 @@ public class HistoryDataHumid implements HistoryDataSource{
     }
 
     private static class CardData{
-
         private String data;
 
         private CardData(String data){

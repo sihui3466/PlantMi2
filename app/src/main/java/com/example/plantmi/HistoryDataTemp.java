@@ -2,6 +2,7 @@ package com.example.plantmi;
 
 import java.util.ArrayList;
 
+// class for operations of arraylist containing temperature data
 public class HistoryDataTemp implements HistoryDataSource{
     private ArrayList<CardData> historyTempArrayList;
 

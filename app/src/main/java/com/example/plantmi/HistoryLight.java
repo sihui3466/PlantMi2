@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+//history activity of light intensity
 public class HistoryLight extends AppCompatActivity {
     RecyclerView recyclerView;
     ImageButton exitBtn;
@@ -26,6 +27,7 @@ public class HistoryLight extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        // to exit history of light intensity back to PlantStatus
         exitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

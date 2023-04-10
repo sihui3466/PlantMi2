@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
+// class to edit user details and store in firebase
 public class EditUser extends AppCompatActivity {
     TextInputEditText userName;
     Button saveDetails;

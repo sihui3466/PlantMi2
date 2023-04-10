@@ -12,6 +12,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+// class to get history data from firebase to add to local arraylists (to be display in recyclerview in history activity pages)
 public class LocalDataAdd {
     DatabaseReference userHistoryMoisture, userHistoryLight, userHistoryTemp, userHistoryHumid, userHistoryLevel;
     static HistoryDataMoisture historyDataMoisture;
