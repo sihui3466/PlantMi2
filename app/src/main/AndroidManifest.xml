@@ -53,7 +53,7 @@
             android:parentActivityName=".PlantStatus"
             android:exported="true" />
         <activity
-            android:name=".HistoryTemperature"
+            android:name=".HistoryTemp"
             android:theme="@style/Theme.PlantMi"
             android:parentActivityName=".PlantStatus"
             android:exported="true" />
@@ -63,6 +63,10 @@
         <activity
             android:name=".EditUser"
             android:theme="@style/Theme.PlantMi" />
+        <activity
+            android:name=".Timer"
+            android:theme="@style/Theme.PlantMi"/>
+        <receiver android:name=".MyBroadcastReceiver"/>
     </application>
 
 </manifest>

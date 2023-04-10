@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class HistoryMoisture extends AppCompatActivity {
     RecyclerView recyclerView;
-    HistoryAdapter historyAdapter;
     ImageButton exitBtn;
 
     @Override
@@ -24,8 +23,7 @@ public class HistoryMoisture extends AppCompatActivity {
         recyclerView = findViewById(R.id.historyMoistureRecyclerView);
         exitBtn = findViewById(R.id.exitbtnMoisture);
 
-
-        RecyclerView.Adapter<HistoryAdapter.HistoryHolder> adapter = new HistoryAdapter(this, PlantProfilePage.historyDataMoisture);
+        RecyclerView.Adapter<HistoryAdapter.HistoryHolder> adapter = new HistoryAdapter(this, LocalDataAdd.historyDataMoisture);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
