@@ -1,6 +1,5 @@
 package com.example.plantmi;
 
-import static com.example.plantmi.PlantProfilePage.historyDataMoisture;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,8 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,9 +21,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-
-import java.sql.Timestamp;
-import java.util.Objects;
 
 
 public class PlantStatus extends AppCompatActivity {
@@ -96,7 +90,7 @@ public class PlantStatus extends AppCompatActivity {
         historyTemperatureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(PlantStatus.this, HistoryTemperature.class);
+                Intent i = new Intent(PlantStatus.this, HistoryTemp.class);
                 startActivity(i);
                 finish();
             }
@@ -155,7 +149,6 @@ public class PlantStatus extends AppCompatActivity {
                     nameOfPlant.setText(data);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -170,7 +163,6 @@ public class PlantStatus extends AppCompatActivity {
                     descOfPlant.setText(data);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 

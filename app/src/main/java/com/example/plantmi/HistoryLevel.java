@@ -10,31 +10,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class HistoryTemperature extends AppCompatActivity {
+public class HistoryLevel extends AppCompatActivity {
     RecyclerView recyclerView;
-    HistoryAdapter historyAdapter;
     ImageButton exitBtn;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_historytemperature);
+        setContentView(R.layout.activity_historylevel);
 
-        recyclerView = findViewById(R.id.historyTemperatureRecyclerView);
-        exitBtn = findViewById(R.id.exitbtnTemperature);
+        recyclerView = findViewById(R.id.historyLevelRecyclerView);
+        exitBtn = findViewById(R.id.exitbtnLevel);
 
-        RecyclerView.Adapter<HistoryAdapter.HistoryHolder> adapter = new HistoryAdapter(this, PlantProfilePage.historyDataLight);
+        RecyclerView.Adapter<HistoryAdapter.HistoryHolder> adapter = new HistoryAdapter(this, LocalDataAdd.historyDataLevel);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         exitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(HistoryTemperature.this, PlantStatus.class);
+                Intent i = new Intent(HistoryLevel.this, PlantStatus.class);
                 startActivity(i);
             }
         });
-
     }
 }
+
