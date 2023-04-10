@@ -3,9 +3,13 @@ package com.example.plantmi;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,12 +28,15 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     Button timeBtn;
@@ -37,10 +46,12 @@ public class MainActivity extends AppCompatActivity {
     FirebaseUser user;
     DatabaseReference rootDatabaseReference;
     SensorSoil sensorSoil;
-
     DatabaseReference waterRef;
     private int hour,minute;
     private String time;
+    TimePicker alarmTimePicker;
+    PendingIntent pendingIntent;
+    AlarmManager alarmManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         backBtn = findViewById(R.id.backBtn);
         user = auth.getCurrentUser();
+
+        alarmTimePicker = (TimePicker) findViewById(R.id.timePicker);
+        alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,32 +99,15 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-    }
 
-        public void popupTime(View view){
-        TimePickerDialog.OnTimeSetListener setTime=new TimePickerDialog.OnTimeSetListener() {
+        timeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onTimeSet(TimePicker timePicker, int hourSelect, int minuteSelect) {
-                hour=hourSelect;
-                minute=minuteSelect;
-                time=String.format(Locale.getDefault(),"%02d:%02d",hour,minute);
-                timeBtn.setText("Watering at "+time);
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,Timer.class);
+                startActivity(intent);
+                finish();
             }
-        };
-        Date currentTime = Calendar. getInstance(). getTime();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
-        String formattedTime = dateFormat.format(currentTime);
-
-//        if (formattedTime==time){
-//            Toast.makeText(MainActivity.this,"Watering start", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//        else{
-//            Toast.makeText(MainActivity.this, "Login Failed. Please try again ^.^", Toast.LENGTH_SHORT);
-//        }
-        TimePickerDialog timePickerDialog=new TimePickerDialog(this, setTime,hour,minute,true);
-        timePickerDialog.setTitle("Select Time");
-        timePickerDialog.show();
+        });
     }
 
 }

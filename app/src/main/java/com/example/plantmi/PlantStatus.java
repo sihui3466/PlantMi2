@@ -134,21 +134,6 @@ public class PlantStatus extends AppCompatActivity {
             }
         });
 
-        rootDatabaseReference.child("sensor_air").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                sensorLight = snapshot.getValue(SensorLight.class);
-                Log.d("Firebase",sensorLight.getValue().toString());
-                lightData.setText(sensorLight.getValue().toString() + "lux");
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // calling on cancelled method when we receive
-                // any error or we are not able to get the data.
-                Toast.makeText(PlantStatus.this, "Failed to get Light Intensity data.", Toast.LENGTH_SHORT).show();
-            }
-        });
-
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         String userUID = user.getUid();
