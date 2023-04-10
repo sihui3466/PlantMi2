@@ -288,7 +288,7 @@ public class PlantProfilePage extends AppCompatActivity {
 
                     if (historyDataLight.getSize() < 10) {
                         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                        String s = timestamp + ":  " + value + "units";
+                        String s = timestamp + ":  " + value + " units";
                         historyDataLight.addHistory(s);
                         Log.d("HistoryL", s);
                     }
