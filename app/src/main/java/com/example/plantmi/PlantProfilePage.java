@@ -40,6 +40,7 @@ import com.squareup.picasso.Picasso;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class PlantProfilePage extends AppCompatActivity {
     Button openCamera, waterBtn, logoutBtn, galleryBtn;
@@ -49,10 +50,14 @@ public class PlantProfilePage extends AppCompatActivity {
     FirebaseAuth auth;
     private View plantStatus;
     DatabaseReference rootDatabaseReference, nameRootDatabaseReference;
+    DatabaseReference userHistoryMoisture;
     SensorSoil sensorSoil;
     SensorLight sensorLight;
 
     private FirebaseAdd firebaseAdd;
+
+    static HistoryDataMoisture historyDataMoisture;
+    static HistoryDataLight historyDataLight;
 
 
     @Override
@@ -73,6 +78,10 @@ public class PlantProfilePage extends AppCompatActivity {
         String userUID = currentUser.getUid();
         nameRootDatabaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(userUID).child("username");
         userEmail.setText(currentUser.getEmail().toString());
+
+        historyDataMoisture = new HistoryDataMoisture();
+        historyDataLight = new HistoryDataLight();
+
         // Check if user is logged in
         if (currentUser != null) { 
             // User signed in successfully, check if they have a picture stored in Firebase Storage
@@ -270,6 +279,23 @@ public class PlantProfilePage extends AppCompatActivity {
         });
 
         firebaseAdd = new FirebaseAdd();
+
+        userHistoryMoisture = FirebaseDatabase.getInstance().getReference().child("history_moisture").child(userUID);
+
+        userHistoryMoisture.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    String s = dataSnapshot.getValue(String.class);
+                    historyDataMoisture.addHistory(s);
+                    Log.d("addHistM", s);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 
