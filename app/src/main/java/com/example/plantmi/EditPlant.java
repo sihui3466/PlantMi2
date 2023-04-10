@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
+// class to edit plant details and store in firebase
 public class EditPlant extends AppCompatActivity {
     TextInputEditText plantName, plantDescription;
     Button saveDetails;

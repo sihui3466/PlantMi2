@@ -2,6 +2,7 @@ package com.example.plantmi;
 
 import java.util.ArrayList;
 
+// class for operations of arraylist containing water tank level data
 public class HistoryDataLevel implements HistoryDataSource{
     private ArrayList<CardData> historyLevelArrayList;
 

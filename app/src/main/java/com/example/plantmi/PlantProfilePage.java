@@ -52,14 +52,10 @@ public class PlantProfilePage extends AppCompatActivity {
     FirebaseAuth auth;
     private View plantStatus;
     DatabaseReference rootDatabaseReference, nameRootDatabaseReference;
-    DatabaseReference userHistoryMoisture;
     SensorSoil sensorSoil;
     SensorLight sensorLight;
-
     private FirebaseAdd firebaseAdd;
     private LocalDataAdd localDataAdd;
-    static HistoryDataLight historyDataLight;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,15 +76,12 @@ public class PlantProfilePage extends AppCompatActivity {
         nameRootDatabaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(userUID).child("username");
         userEmail.setText(currentUser.getEmail().toString());
 
-//        historyDataLight = new HistoryDataLight();
-
         // Check if user is logged in
         if (currentUser != null) { 
             // User signed in successfully, check if they have a picture stored in Firebase Storage
             String uid = currentUser.getUid();
             StorageReference storageRef = FirebaseStorage.getInstance().getReference();
             StorageReference photoRef = storageRef.child("images/" + currentUser.getEmail() + "/" + uid);
-
 
             photoRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
@@ -119,12 +112,12 @@ public class PlantProfilePage extends AppCompatActivity {
                     username.setText(data);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+        // to go from PlantProfilePage to EditUser to edit user details
         editUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,6 +127,7 @@ public class PlantProfilePage extends AppCompatActivity {
             }
         });
 
+        // to go from PlantProfilePage to Watering Plant activity
         waterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,6 +136,8 @@ public class PlantProfilePage extends AppCompatActivity {
                 finish();
             }
         });
+
+        // to get image from gallery
         final ActivityResultLauncher<Intent> launcherGallery = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
@@ -183,7 +179,6 @@ public class PlantProfilePage extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                         }
-
                     }
 
                     public byte[] getBytes(InputStream inputStream) throws IOException {
@@ -236,6 +231,7 @@ public class PlantProfilePage extends AppCompatActivity {
             }
         });
 
+        // swipe up to go from PlantProfilePage to PlantStatus
         plantStatus.setOnTouchListener(new OnSwipeTouchListener(PlantProfilePage.this) {
             public void onSwipeTop() {
                 Intent i = new Intent(PlantProfilePage.this, PlantStatus.class);
@@ -246,6 +242,7 @@ public class PlantProfilePage extends AppCompatActivity {
 
         rootDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
+        // display toast if plant moisture level is <= 20% to remind user to water plant
         rootDatabaseReference.child("sensor_soil").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -278,45 +275,20 @@ public class PlantProfilePage extends AppCompatActivity {
             }
         });
 
+        // to store in firebase the current plant status upon opening of app
         firebaseAdd = new FirebaseAdd();
 
+        // to get history of plant status data and store in local arraylist to be displayed using recyclerview in history activities
         localDataAdd = new LocalDataAdd();
-
-//        userHistoryMoisture = FirebaseDatabase.getInstance().getReference().child("history_moisture").child(userUID);
-//
-//        userHistoryMoisture.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DataSnapshot> task) {
-//                if (!task.isSuccessful()) {
-//                    Log.e("Firebase", "Error in getting Moisture Level history", task.getException());
-//                }
-//                else {
-//                    for (DataSnapshot dataSnapshot: task.getResult().getChildren()){
-//                        String s = dataSnapshot.getValue(String.class);
-//                        historyDataMoisture.addHistory(s);
-//                        Log.d("addHistM", s);
-//                    }
-//                }
-//            }
-//        });
 
     }
 
+    // to remove history stored in local arraylist when app is closed (to refresh data displayed in recyclerview)
     @Override
     protected void onDestroy() {
         super.onDestroy();
         historyDataMoisture.clearHistory();
     }
-
-    //        @Override
-//        protected void onActivityResult(int requestCode, int resultCode,@Nullable Intent data){
-//            super.onActivityResult(requestCode,resultCode,data);
-//            if (requestCode==camera_code){
-//                Bitmap image= (Bitmap)data.getExtras().get("data");
-//                imageView.setImageBitmap(image);
-//                addImgText.setVisibility(View.INVISIBLE);
-//
-//            }
 }
 
 

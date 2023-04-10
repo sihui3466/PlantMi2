@@ -2,6 +2,7 @@ package com.example.plantmi;
 
 import java.util.ArrayList;
 
+// class for operations of arraylist containing light intensity data
 public class HistoryDataLight implements HistoryDataSource{
     private ArrayList<CardData> historyLightArrayList;
 

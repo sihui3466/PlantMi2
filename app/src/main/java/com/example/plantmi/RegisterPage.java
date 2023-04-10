@@ -23,6 +23,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+// to register new users and save details in firebase
 public class RegisterPage extends AppCompatActivity {
     Button registerBtn, loginBtn;
     FirebaseAuth mAuth;
@@ -130,7 +131,6 @@ public class RegisterPage extends AppCompatActivity {
                             }
 
                         });
-
             }
         });
 

@@ -14,6 +14,8 @@ public class StartPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         startBtn=findViewById(R.id.getstartedBtn);
+
+        // go from StartPage to LoginPage
         startBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){

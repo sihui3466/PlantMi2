@@ -14,6 +14,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.sql.Timestamp;
 
+// class to add a user's plant status (moisture, light, temp, humidity, water tank level) history to firebase
+// data is saved once app is opened
 public class FirebaseAdd {
     DatabaseReference rootDatabaseReference, userHistoryMoisture, userHistoryLight, userHistoryTemp, userHistoryHumid, userHistoryLevel;
 
@@ -43,10 +45,7 @@ public class FirebaseAdd {
                     double d = Double.parseDouble(sensorSoil.getValue().toString());
                     double value = Math.round((100 - ((d / 4095) * 100)));
                     Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                    String s = timestamp + ":  " + value + "%";
-//                    HashMap newHistory = new HashMap<>();
-//                    newHistory.put("new", s);
-//                    userHistoryMoisture.updateChildren(newHistory);
+                    String s = timestamp + ":  " + value + " %";
                     userHistoryMoisture.push().setValue(s);
                 }
             }
@@ -62,7 +61,7 @@ public class FirebaseAdd {
                     Log.d("FirebaseAdd", sensorLight.getValue().toString());
                     String value = sensorLight.getValue().toString();
                     Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                    String s = timestamp + ":  " + value + "lux";
+                    String s = timestamp + ":  " + value + " lux";
                     userHistoryLight.push().setValue(s);
                 }
             }
@@ -79,8 +78,8 @@ public class FirebaseAdd {
                     String value1 = sensorAir.getTemperature().toString();
                     String value2 = sensorAir.getHumidity().toString();
                     Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                    String s1 = timestamp + ":  " + value1 + "C";
-                    String s2 = timestamp + ":  " + value2 + "%";
+                    String s1 = timestamp + ":  " + value1 + " C";
+                    String s2 = timestamp + ":  " + value2 + " %";
                     userHistoryTemp.push().setValue(s1);
                     userHistoryHumid.push().setValue(s2);
                 }
@@ -98,12 +97,11 @@ public class FirebaseAdd {
                     double d = Double.parseDouble(sensorLevel.getValue().toString());
                     double value = Math.round((d / 4095) * 100);
                     Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                    String s = timestamp + ":  " + value + "%";
+                    String s = timestamp + ":  " + value + " %";
                     userHistoryLevel.push().setValue(s);
                 }
             }
         });
-
     }
 }
 
