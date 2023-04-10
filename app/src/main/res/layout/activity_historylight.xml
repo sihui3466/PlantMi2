@@ -9,15 +9,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/historyBoxLight"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/historybox"
-        android:id="@+id/historyBoxLight"
         android:elevation="1dp"
-        android:scaleType="fitXY">
-    </androidx.appcompat.widget.AppCompatButton>
+        android:scaleType="fitXY"></androidx.appcompat.widget.AppCompatButton>
 
     <TextView
         android:id="@+id/historyLightTextView"
@@ -46,15 +48,18 @@
         android:elevation="2dp"/>
 
     <ImageButton
+        android:id="@+id/exitbtnLight"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:src="@drawable/exitbtn"
-        android:id="@+id/exitbtnLight"
-        android:elevation="200dp"
-        android:backgroundTint="@android:color/transparent"
         android:layout_alignParentRight="true"
-        android:layout_margin="10dp"
-        android:scaleType="fitCenter"/>
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@android:color/transparent"
+        android:elevation="200dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/exitbtn" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -63,6 +68,7 @@
         android:layout_marginTop="105dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:layout_marginBottom="40dp"
         android:layout_weight="0.8"
         android:elevation="2dp"/>
 
