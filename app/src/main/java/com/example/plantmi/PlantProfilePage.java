@@ -5,7 +5,6 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -41,7 +40,6 @@ import com.squareup.picasso.Picasso;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Timestamp;
 
 public class PlantProfilePage extends AppCompatActivity {
     Button openCamera, waterBtn, logoutBtn, galleryBtn;
@@ -54,8 +52,7 @@ public class PlantProfilePage extends AppCompatActivity {
     SensorSoil sensorSoil;
     SensorLight sensorLight;
 
-    static HistoryDataMoisture historyDataMoisture;
-    static HistoryDataLight historyDataLight;
+    private FirebaseAdd firebaseAdd;
 
 
     @Override
@@ -83,8 +80,6 @@ public class PlantProfilePage extends AppCompatActivity {
             StorageReference storageRef = FirebaseStorage.getInstance().getReference();
             StorageReference photoRef = storageRef.child("images/" + currentUser.getEmail() + "/" + uid);
 
-            historyDataMoisture = new HistoryDataMoisture();
-            historyDataLight = new HistoryDataLight();
 
             photoRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
@@ -225,8 +220,6 @@ public class PlantProfilePage extends AppCompatActivity {
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                historyDataMoisture.clearHistory();
-                historyDataLight.clearHistory();
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(PlantProfilePage.this, LoginPage.class);
                 startActivity(intent);
@@ -258,19 +251,6 @@ public class PlantProfilePage extends AppCompatActivity {
                     if (value <= 20) {
                         Toast.makeText(PlantProfilePage.this, "Remember to water mi!", Toast.LENGTH_LONG).show();
                     }
-                    if (historyDataMoisture.getSize() < 10) {
-                        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                        String s = timestamp + ":  " + value + "%";
-                        historyDataMoisture.addHistory(s);
-                        Log.d("HistoryM", s);
-                    }
-                    else {
-                        historyDataMoisture.removeHistory();
-                        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                        String s = timestamp + ":  " + value + "%";
-                        historyDataMoisture.addHistory(s);
-                        Log.d("HistoryM", s);
-                    }
                 }
             }
         });
@@ -285,23 +265,11 @@ public class PlantProfilePage extends AppCompatActivity {
                     sensorLight = task.getResult().getValue(SensorLight.class);
                     Log.d("Firebase", sensorLight.getValue().toString());
                     String value = sensorLight.getValue().toString();
-
-                    if (historyDataLight.getSize() < 10) {
-                        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                        String s = timestamp + ":  " + value + " units";
-                        historyDataLight.addHistory(s);
-                        Log.d("HistoryL", s);
-                    }
-                    else {
-                        historyDataLight.removeHistory();
-                        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                        String s = timestamp + ":  " + value + " units";
-                        historyDataLight.addHistory(s);
-                        Log.d("HistoryL", s);
-                    }
                 }
             }
         });
+
+        firebaseAdd = new FirebaseAdd();
 
     }
 
