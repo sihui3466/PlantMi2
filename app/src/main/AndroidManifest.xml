@@ -53,6 +53,11 @@
             android:parentActivityName=".PlantStatus"
             android:exported="true" />
         <activity
+            android:name=".HistoryTemperature"
+            android:theme="@style/Theme.PlantMi"
+            android:parentActivityName=".PlantStatus"
+            android:exported="true" />
+        <activity
             android:name=".EditPlant"
             android:theme="@style/Theme.PlantMi" />
         <activity

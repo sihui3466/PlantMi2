@@ -40,6 +40,7 @@ public class PlantStatus extends AppCompatActivity {
     ImageButton editBtn;
     Button historyMoistureBtn;
     Button historyLightBtn;
+    Button historyTemperatureBtn;
     TextView nameOfPlant, descOfPlant;
     SensorLight sensorLight;
     SensorSoil sensorSoil;
@@ -53,6 +54,7 @@ public class PlantStatus extends AppCompatActivity {
         editBtn = findViewById(R.id.edit);
         historyMoistureBtn = findViewById(R.id.historyMoistureButton);
         historyLightBtn = findViewById(R.id.historyLightButton);
+        historyTemperatureBtn = findViewById(R.id.historyTemperatureButton);
         nameOfPlant = findViewById(R.id.name);
         descOfPlant = findViewById(R.id.desc);
 
@@ -86,6 +88,15 @@ public class PlantStatus extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(PlantStatus.this, HistoryLight.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+        historyTemperatureBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(PlantStatus.this, HistoryTemperature.class);
                 startActivity(i);
                 finish();
             }
