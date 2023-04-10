@@ -15,9 +15,11 @@
         android:backgroundTint="@android:color/transparent"
         android:scaleType="centerInside"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:id="@+id/backBtn"/>
 
     <ImageButton
+        android:id="@+id/waterButton"
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:src="@drawable/waterbtn"
@@ -42,9 +44,10 @@
         android:indeterminateOnly="false"
         android:progressDrawable="@drawable/progress_bar"
         android:layout_centerHorizontal="true"
-        android:max="200"
-        android:progress="200"
-        android:rotation="270" />
+        android:max="100"
+        android:progress="100"
+        android:rotation="270"
+        android:id="@+id/progressBar"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/setTimeButton"

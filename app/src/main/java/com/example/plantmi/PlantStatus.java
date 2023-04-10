@@ -61,6 +61,7 @@ public class PlantStatus extends AppCompatActivity {
                 Intent i = new Intent(PlantStatus.this, PlantProfilePage.class);
                 startActivity(i);
                 overridePendingTransition( R.anim.slide_from_top, R.anim.slide_in_top );
+                finish();
             }
         });
 
@@ -69,6 +70,7 @@ public class PlantStatus extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(PlantStatus.this, EditPlant.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -77,6 +79,7 @@ public class PlantStatus extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(PlantStatus.this, HistoryMoisture.class);
                 startActivity(i);
+                finish();
             }
         });
         historyLightBtn.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +87,7 @@ public class PlantStatus extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(PlantStatus.this, HistoryLight.class);
                 startActivity(i);
+                finish();
             }
         });
 

@@ -48,6 +48,7 @@ public class EditUser extends AppCompatActivity {
                     rootDatabaseReference.updateChildren(newUser);
                     Intent intent = new Intent(EditUser.this, PlantProfilePage.class);
                     startActivity(intent);
+                    finish();
                 }
             }
         });
