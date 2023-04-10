@@ -2,37 +2,37 @@ package com.example.plantmi;
 
 import java.util.ArrayList;
 
-public class HistoryDataMoisture implements HistoryDataSource{
-    private ArrayList<CardData> historyMoistureArrayList;
+public class HistoryDataTemp implements HistoryDataSource{
+    private ArrayList<CardData> historyTempArrayList;
 
-    HistoryDataMoisture(){
-        historyMoistureArrayList = new ArrayList<>();
+    HistoryDataTemp(){
+        historyTempArrayList = new ArrayList<>();
     }
 
     @Override
     public void addHistory(String s) {
         CardData c = new CardData(s);
-        historyMoistureArrayList.add(c);
+        historyTempArrayList.add(c);
     }
 
     @Override
     public String getHistory(int i) {
-        return historyMoistureArrayList.get(i).getData();
+        return historyTempArrayList.get(i).getData();
     }
 
     @Override
     public void removeHistory() {
-        historyMoistureArrayList.remove(0);
+        historyTempArrayList.remove(0);
     }
 
     @Override
     public int getSize() {
-        return historyMoistureArrayList.size();
+        return historyTempArrayList.size();
     }
 
     @Override
     public void clearHistory() {
-        historyMoistureArrayList.clear();
+        historyTempArrayList.clear();
     }
 
     private static class CardData{
@@ -49,3 +49,4 @@ public class HistoryDataMoisture implements HistoryDataSource{
 
     }
 }
+

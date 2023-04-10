@@ -1,5 +1,7 @@
 package com.example.plantmi;
 
+import static com.example.plantmi.LocalDataAdd.historyDataMoisture;
+
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -55,8 +57,7 @@ public class PlantProfilePage extends AppCompatActivity {
     SensorLight sensorLight;
 
     private FirebaseAdd firebaseAdd;
-
-    static HistoryDataMoisture historyDataMoisture;
+    private LocalDataAdd localDataAdd;
     static HistoryDataLight historyDataLight;
 
 
@@ -79,8 +80,7 @@ public class PlantProfilePage extends AppCompatActivity {
         nameRootDatabaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(userUID).child("username");
         userEmail.setText(currentUser.getEmail().toString());
 
-        historyDataMoisture = new HistoryDataMoisture();
-        historyDataLight = new HistoryDataLight();
+//        historyDataLight = new HistoryDataLight();
 
         // Check if user is logged in
         if (currentUser != null) { 
@@ -280,26 +280,35 @@ public class PlantProfilePage extends AppCompatActivity {
 
         firebaseAdd = new FirebaseAdd();
 
-        userHistoryMoisture = FirebaseDatabase.getInstance().getReference().child("history_moisture").child(userUID);
+        localDataAdd = new LocalDataAdd();
 
-        userHistoryMoisture.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    String s = dataSnapshot.getValue(String.class);
-                    historyDataMoisture.addHistory(s);
-                    Log.d("addHistM", s);
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//        userHistoryMoisture = FirebaseDatabase.getInstance().getReference().child("history_moisture").child(userUID);
+//
+//        userHistoryMoisture.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DataSnapshot> task) {
+//                if (!task.isSuccessful()) {
+//                    Log.e("Firebase", "Error in getting Moisture Level history", task.getException());
+//                }
+//                else {
+//                    for (DataSnapshot dataSnapshot: task.getResult().getChildren()){
+//                        String s = dataSnapshot.getValue(String.class);
+//                        historyDataMoisture.addHistory(s);
+//                        Log.d("addHistM", s);
+//                    }
+//                }
+//            }
+//        });
 
     }
 
-//        @Override
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        historyDataMoisture.clearHistory();
+    }
+
+    //        @Override
 //        protected void onActivityResult(int requestCode, int resultCode,@Nullable Intent data){
 //            super.onActivityResult(requestCode,resultCode,data);
 //            if (requestCode==camera_code){

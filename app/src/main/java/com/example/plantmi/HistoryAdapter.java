@@ -44,6 +44,17 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryH
         return historyDataSource.getSize();
     }
 
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+
     // inner class to hold references to widgets in each list item
     class HistoryHolder extends RecyclerView.ViewHolder{
         private TextView textViewHistory;
