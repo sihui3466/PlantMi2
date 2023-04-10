@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PlantStatus"
-    android:orientation="vertical"
     android:background="@color/dark_blue"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical"
+    tools:context=".PlantStatus">
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/plantStatusSlidingBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:background="@drawable/statusbtn"
-        android:id="@+id/plantStatusSlidingBar"
         android:elevation="1dp"
-        android:scaleType="fitXY">
-    </androidx.appcompat.widget.AppCompatButton>
+        android:scaleType="fitXY"></androidx.appcompat.widget.AppCompatButton>
 
     <TextView
         android:id="@+id/plantStatusTextView"
@@ -36,7 +35,7 @@
         android:layout_height="match_parent"
         android:src="@drawable/white_bg"
         android:scaleType="fitXY"
-        android:layout_marginTop="100dp"/>
+        android:layout_marginTop="60dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,7 +46,7 @@
         android:textSize="40dp"
         android:textColor="@color/text_color"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="180dp"
         android:elevation="2000dp"/>
 
     <ImageButton
@@ -57,7 +56,7 @@
         android:id="@+id/edit"
         android:elevation="200dp"
         android:backgroundTint="@android:color/transparent"
-        android:layout_marginTop="245dp"
+        android:layout_marginTop="185dp"
         android:layout_marginLeft="270dp"
         android:scaleType="fitCenter"/>
 
@@ -70,180 +69,304 @@
         android:textSize="18dp"
         android:textColor="@color/text_color"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="230dp"
         android:elevation="2000dp"/>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/moistureLevelStatusCard"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="330dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        app:cardElevation="10dp"
+        android:id="@+id/waterTankStatusCard"
+        android:layout_width="160dp"
+        android:layout_height="140dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="260dp"
+        app:cardBackgroundColor="#CBC2E4"
         app:cardCornerRadius="20dp"
-        app:cardBackgroundColor="#89B8CB"
-        app:cardMaxElevation="12dp"
+        app:cardElevation="2dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true">
-        <RelativeLayout
-            android:id="@+id/moistureLevelCard"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:id="@+id/moistureLevelName"
-                android:background="#89B8CB"
-                android:text="Moisture Level"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="15dp"
-                android:fontFamily="@font/lato_regular"
-                android:textSize="16dp"
-                android:textColor="@color/text_color"/>
-            <TextView
-                android:id="@+id/moistureLevelValue"
-                android:text="--"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="130dp"
-                android:fontFamily="@font/lalezar"
-                android:textSize="22dp"
-                android:textColor="@color/text_color"/>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/historyMoistureButton"
+        <RelativeLayout
+            android:id="@+id/waterTankCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/waterTankName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="210dp"
+                android:background="#CBC2E4"
+                android:fontFamily="@font/lato_regular"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="Water Tank Level"
+                android:textAlignment="center"
+                android:textColor="@color/text_color"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/waterTankValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lalezar"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:text="--"
+                android:textAlignment="center"
+                android:textColor="@color/text_color"
+                android:textSize="25dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/historyWaterTankButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="100dp"
                 android:background="@drawable/btn_bg"
                 android:fontFamily="@font/lato_bold"
-                android:gravity="center"
                 android:text="History"
-                android:textColor="@color/text_color"></androidx.appcompat.widget.AppCompatButton>
+                android:textSize="8dp"
+                android:textColor="@color/text_color">
+            </androidx.appcompat.widget.AppCompatButton>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/lightIntensityStatusCard"
+    <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="450dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        app:cardElevation="10dp"
-        app:cardCornerRadius="20dp"
-        app:cardBackgroundColor="#CDC98B"
-        app:cardMaxElevation="12dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true">
-        <RelativeLayout
-            android:id="@+id/lightIntensityCard"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:id="@+id/lightIntensityName"
-                android:background="#CDC98B"
-                android:text="Light Intensity"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="15dp"
-                android:fontFamily="@font/lato_regular"
-                android:textSize="16dp"
-                android:textColor="@color/text_color"/>
-            <TextView
-                android:id="@+id/lightIntensityValue"
-                android:text="--"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="130dp"
-                android:fontFamily="@font/lalezar"
-                android:textSize="22dp"
-                android:textColor="@color/text_color"/>
+        android:layout_height="360dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="20dp"
+        android:columnCount="2"
+        android:elevation="20dp"
+        android:rowCount="2">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/historyLightButton"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/moistureLevelStatusCard"
+            android:layout_width="160dp"
+            android:layout_height="140dp"
+            app:cardBackgroundColor="#89B8CB"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="2dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true">
+
+            <RelativeLayout
+                android:id="@+id/moistureLevelCard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="210dp"
-                android:background="@drawable/btn_bg"
-                android:fontFamily="@font/lato_bold"
-                android:gravity="center"
-                android:text="History"
-                android:textColor="@color/text_color"></androidx.appcompat.widget.AppCompatButton>
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
+                android:layout_gravity="center_horizontal">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/temperatureStatusCard"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="570dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        app:cardElevation="10dp"
-        app:cardCornerRadius="20dp"
-        app:cardBackgroundColor="#A4CCBD"
-        app:cardMaxElevation="12dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true">
-        <RelativeLayout
-            android:id="@+id/temperatureCard"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:id="@+id/temperatureName"
-                android:text="Temperature"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="15dp"
-                android:fontFamily="@font/lato_regular"
-                android:textSize="16dp"
-                android:textColor="@color/text_color"/>
-            <TextView
-                android:id="@+id/temperatureValue"
-                android:text="--"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="130dp"
-                android:fontFamily="@font/lalezar"
-                android:textSize="22dp"
-                android:textColor="@color/text_color"/>
+                <TextView
+                    android:id="@+id/moistureLevelName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#89B8CB"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:text="Moisture Level"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_color"
+                    android:textSize="18dp" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/historyTemperatureButton"
+
+                <TextView
+                    android:id="@+id/moistureLevelValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lalezar"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="40dp"
+                    android:text="--"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_color"
+                    android:textSize="25dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/historyMoistureButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="100dp"
+                    android:background="@drawable/btn_bg"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="History"
+                    android:textSize="8dp"
+                    android:textColor="@color/text_color">
+
+                </androidx.appcompat.widget.AppCompatButton>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/lightIntensityStatusCard"
+            android:layout_width="160dp"
+            android:layout_height="140dp"
+            app:cardBackgroundColor="#DFDB9F"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="2dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true">
+
+            <RelativeLayout
+                android:id="@+id/lightIntensityCard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="210dp"
-                android:background="@drawable/btn_bg"
-                android:fontFamily="@font/lato_bold"
-                android:gravity="center"
-                android:text="History"
-                android:textColor="@color/text_color"></androidx.appcompat.widget.AppCompatButton>
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
+                android:layout_gravity="center_horizontal">
 
+                <TextView
+                    android:id="@+id/lightIntensityName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#DEDA9E"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:text="Light Intensity"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_color"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/lightIntensityValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lalezar"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="40dp"
+                    android:text="--"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_color"
+                    android:textSize="25dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/historyLightButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="100dp"
+                    android:background="@drawable/btn_bg"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="History"
+                    android:textSize="8dp"
+                    android:textColor="@color/text_color">
+                </androidx.appcompat.widget.AppCompatButton>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/temperatureStatusCard"
+            android:layout_width="160dp"
+            android:layout_height="140dp"
+            app:cardBackgroundColor="#A4CCBD"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="2dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true">
+
+            <RelativeLayout
+                android:id="@+id/temperatureCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/temperatureName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#A2CABB"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:text="Temperature"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_color"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/temperatureValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lalezar"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="40dp"
+                    android:text="--"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_color"
+                    android:textSize="25dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/historyTemperatureButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="100dp"
+                    android:background="@drawable/btn_bg"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="History"
+                    android:textSize="8dp"
+                    android:textColor="@color/text_color">
+                </androidx.appcompat.widget.AppCompatButton>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/humidityStatusCard"
+            android:layout_width="160dp"
+            android:layout_height="140dp"
+            app:cardBackgroundColor="#F1DC9D"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="2dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true">
+
+            <RelativeLayout
+                android:id="@+id/humidityCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/humidityName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#EFDA9B"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:text="Humidity"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_color"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/humidityValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lalezar"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="40dp"
+                    android:text="--"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_color"
+                    android:textSize="25dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/historyHumidityButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="100dp"
+                    android:background="@drawable/btn_bg"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="History"
+                    android:textSize="8dp"
+                    android:textColor="@color/text_color">
+                </androidx.appcompat.widget.AppCompatButton>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </GridLayout>
 </RelativeLayout>
