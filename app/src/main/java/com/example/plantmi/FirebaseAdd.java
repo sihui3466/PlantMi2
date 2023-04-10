@@ -29,7 +29,6 @@ public class FirebaseAdd {
         userHistoryTemp = FirebaseDatabase.getInstance().getReference().child("history_temp").child(userUID);
 
 
-
         rootDatabaseReference.child("sensor_soil").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
