@@ -60,6 +60,7 @@ public class RegisterPage extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(RegisterPage.this,LoginPage.class);
                 startActivity(intent);
+                finish();
             }
         });
 

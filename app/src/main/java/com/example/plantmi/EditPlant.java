@@ -52,6 +52,7 @@ public class EditPlant extends AppCompatActivity {
 
                     Intent intent = new Intent(EditPlant.this, PlantStatus.class);
                     startActivity(intent);
+                    finish();
                 }
 
             }
