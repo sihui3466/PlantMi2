@@ -32,9 +32,7 @@ public class PlantStatus extends AppCompatActivity {
     private TextView moistureData;
     private TextView lightData;
     ImageButton editBtn;
-    Button historyMoistureBtn;
-    Button historyLightBtn;
-    Button historyTemperatureBtn;
+    Button historyMoistureBtn, historyLightBtn, historyTemperatureBtn;
     TextView nameOfPlant, descOfPlant;
     SensorLight sensorLight;
     SensorSoil sensorSoil;
@@ -126,7 +124,22 @@ public class PlantStatus extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 sensorLight = snapshot.getValue(SensorLight.class);
                 Log.d("Firebase",sensorLight.getValue().toString());
-                lightData.setText(sensorLight.getValue().toString() + "units");
+                lightData.setText(sensorLight.getValue().toString() + "lux");
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // calling on cancelled method when we receive
+                // any error or we are not able to get the data.
+                Toast.makeText(PlantStatus.this, "Failed to get Light Intensity data.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        rootDatabaseReference.child("sensor_air").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                sensorLight = snapshot.getValue(SensorLight.class);
+                Log.d("Firebase",sensorLight.getValue().toString());
+                lightData.setText(sensorLight.getValue().toString() + "lux");
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
