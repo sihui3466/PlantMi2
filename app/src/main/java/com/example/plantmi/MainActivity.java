@@ -29,7 +29,8 @@ import java.util.Date;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
-    Button timeBtn, waterButton, backBtn;
+    Button timeBtn;
+    ImageButton waterButton, backBtn;
     ProgressBar progressBar;
     FirebaseAuth auth;
     FirebaseUser user;
@@ -64,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 waterRef.setValue(true);
-                waterRef.setValue(false);
             }
 
         });
