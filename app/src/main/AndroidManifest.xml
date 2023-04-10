@@ -58,6 +58,16 @@
             android:parentActivityName=".PlantStatus"
             android:exported="true" />
         <activity
+            android:name=".HistoryHumid"
+            android:theme="@style/Theme.PlantMi"
+            android:parentActivityName=".PlantStatus"
+            android:exported="true" />
+        <activity
+            android:name=".HistoryLevel"
+            android:theme="@style/Theme.PlantMi"
+            android:parentActivityName=".PlantStatus"
+            android:exported="true" />
+        <activity
             android:name=".EditPlant"
             android:theme="@style/Theme.PlantMi" />
         <activity

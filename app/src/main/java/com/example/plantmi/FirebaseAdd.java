@@ -78,7 +78,7 @@ public class FirebaseAdd {
                     String value1 = sensorAir.getTemperature().toString();
                     String value2 = sensorAir.getHumidity().toString();
                     Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                    String s1 = timestamp + ":  " + value1 + " C";
+                    String s1 = timestamp + ":  " + value1 + " °C";
                     String s2 = timestamp + ":  " + value2 + " %";
                     userHistoryTemp.push().setValue(s1);
                     userHistoryHumid.push().setValue(s2);

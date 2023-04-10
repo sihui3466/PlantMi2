@@ -135,7 +135,7 @@ public class PlantStatus extends AppCompatActivity {
                 Log.d("FirebaseReal",sensorSoil.getValue().toString());
                 double d = Double.parseDouble(sensorSoil.getValue().toString());
                 double value = Math.round( (100 - ((d/4095)*100)) );
-                moistureData.setText(Double.toString(value) + "%");
+                moistureData.setText(Double.toString(value) + " %");
                 if (value<=20){
                     Toast.makeText(PlantStatus.this, "Remember to water mi!", Toast.LENGTH_LONG).show();
                 }
@@ -170,7 +170,7 @@ public class PlantStatus extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 sensorAir = snapshot.getValue(SensorAir.class);
                 Log.d("FirebaseReal",sensorAir.getTemperature().toString());
-                tempData.setText(sensorAir.getTemperature().toString() + " C");
+                tempData.setText(sensorAir.getTemperature().toString() + " °C");
                 Log.d("FirebaseReal",sensorAir.getTemperature().toString());
                 humidData.setText(sensorAir.getHumidity().toString() + " %");
             }

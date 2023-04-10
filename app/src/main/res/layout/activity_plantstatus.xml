@@ -124,7 +124,7 @@
                 android:background="@drawable/btn_bg"
                 android:fontFamily="@font/lato_bold"
                 android:text="History"
-                android:textSize="8dp"
+                android:textSize="10dp"
                 android:textColor="@color/text_color">
             </androidx.appcompat.widget.AppCompatButton>
         </RelativeLayout>
@@ -192,7 +192,7 @@
                     android:background="@drawable/btn_bg"
                     android:fontFamily="@font/lato_bold"
                     android:text="History"
-                    android:textSize="8dp"
+                    android:textSize="10dp"
                     android:textColor="@color/text_color">
 
                 </androidx.appcompat.widget.AppCompatButton>
@@ -249,7 +249,7 @@
                     android:background="@drawable/btn_bg"
                     android:fontFamily="@font/lato_bold"
                     android:text="History"
-                    android:textSize="8dp"
+                    android:textSize="10dp"
                     android:textColor="@color/text_color">
                 </androidx.appcompat.widget.AppCompatButton>
             </RelativeLayout>
@@ -306,7 +306,7 @@
                     android:background="@drawable/btn_bg"
                     android:fontFamily="@font/lato_bold"
                     android:text="History"
-                    android:textSize="8dp"
+                    android:textSize="10dp"
                     android:textColor="@color/text_color">
                 </androidx.appcompat.widget.AppCompatButton>
             </RelativeLayout>
@@ -363,7 +363,7 @@
                     android:background="@drawable/btn_bg"
                     android:fontFamily="@font/lato_bold"
                     android:text="History"
-                    android:textSize="8dp"
+                    android:textSize="10dp"
                     android:textColor="@color/text_color">
                 </androidx.appcompat.widget.AppCompatButton>
             </RelativeLayout>
