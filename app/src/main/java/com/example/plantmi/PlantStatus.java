@@ -32,9 +32,7 @@ public class PlantStatus extends AppCompatActivity {
     private TextView moistureData;
     private TextView lightData;
     ImageButton editBtn;
-    Button historyMoistureBtn;
-    Button historyLightBtn;
-    Button historyTemperatureBtn;
+    Button historyMoistureBtn, historyLightBtn, historyTemperatureBtn;
     TextView nameOfPlant, descOfPlant;
     SensorLight sensorLight;
     SensorSoil sensorSoil;
