@@ -55,7 +55,7 @@ public class Timer extends AppCompatActivity {
 
     public void OnClicked(View view) {
         long time;
-        Toast.makeText(Timer.this, "ALARM ON", Toast.LENGTH_SHORT).show();
+        Toast.makeText(Timer.this, "TIMER ON", Toast.LENGTH_SHORT).show();
         Calendar calendar = Calendar.getInstance();
 
         // calendar is called to get current time in hour and minute
@@ -77,11 +77,9 @@ public class Timer extends AppCompatActivity {
             else
                 time = time + (1000 * 60 * 60 * 24);
         }
-        // Alarm rings continuously until toggle button is turned off
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, time, pendingIntent);
         Intent i = new Intent(Timer.this,MainActivity.class);
         startActivity(i);
-        // alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (time * 1000), pendingIntent);
 
     }
 }

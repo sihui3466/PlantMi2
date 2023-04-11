@@ -15,7 +15,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Toast.makeText(context, "Alarm! Wake up! Wake up!", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "Water Dispensing!", Toast.LENGTH_LONG).show();
         waterRef = FirebaseDatabase.getInstance().getReference().child("water_plant").child("value");
         waterRef.setValue(true);
     }

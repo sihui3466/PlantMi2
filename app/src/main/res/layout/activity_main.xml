@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:background="@color/white">
+    android:background="@color/dark_blue">
 
     <ImageButton
         android:layout_width="90dp"
@@ -38,8 +38,8 @@
         android:src="@drawable/plantmi_base"/>
 
     <ProgressBar
-        android:layout_width="450dp"
-        android:layout_height="450dp"
+        android:layout_width="500dp"
+        android:layout_height="500dp"
         android:layout_marginTop="80dp"
         android:indeterminateOnly="false"
         android:progressDrawable="@drawable/progress_bar"
