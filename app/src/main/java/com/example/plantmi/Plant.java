@@ -6,7 +6,6 @@ public class Plant{
 
     public String plantname;
     public String plantdesc;
-    public Time time;
 
     public Plant() {
     }
@@ -16,7 +15,4 @@ public class Plant{
         this.plantdesc = plantdesc;
     }
 
-    public void setTime(Time time) {
-        this.time = time;
-    }
 }
