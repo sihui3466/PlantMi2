@@ -45,23 +45,24 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 public class PlantProfilePage extends AppCompatActivity {
+    private View plantStatus;
+    private FirebaseAdd firebaseAdd;
+    private LocalDataAdd localDataAdd;
+    
     Button openCamera, waterBtn, logoutBtn, galleryBtn;
     ImageView imageView;
     TextView username, userEmail;
     ImageButton editUser;
     FirebaseAuth auth;
-    private View plantStatus;
     DatabaseReference rootDatabaseReference, nameRootDatabaseReference;
     SensorSoil sensorSoil;
     SensorLight sensorLight;
-    private FirebaseAdd firebaseAdd;
-    private LocalDataAdd localDataAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plantprofile);
-//        openCamera = findViewById(R.id.OpenCamera);
+       
         waterBtn = findViewById(R.id.waterButton);
         galleryBtn = findViewById(R.id.GalleryButton);
         logoutBtn = findViewById(R.id.logout);
@@ -71,16 +72,18 @@ public class PlantProfilePage extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         username = findViewById(R.id.username);
         userEmail = findViewById(R.id.user_email);
+        
+        //Firebase 
         FirebaseUser currentUser = auth.getCurrentUser();
         String userUID = currentUser.getUid();
         nameRootDatabaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(userUID).child("username");
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
         userEmail.setText(currentUser.getEmail().toString());
 
         // Check if user is logged in
         if (currentUser != null) { 
             // User signed in successfully, check if they have a picture stored in Firebase Storage
             String uid = currentUser.getUid();
-            StorageReference storageRef = FirebaseStorage.getInstance().getReference();
             StorageReference photoRef = storageRef.child("images/" + currentUser.getEmail() + "/" + uid);
 
             photoRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -104,6 +107,7 @@ public class PlantProfilePage extends AppCompatActivity {
                 }
             });
         }
+        
         nameRootDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -117,6 +121,7 @@ public class PlantProfilePage extends AppCompatActivity {
 
             }
         });
+        
         // to go from PlantProfilePage to EditUser to edit user details
         editUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -195,17 +200,8 @@ public class PlantProfilePage extends AppCompatActivity {
                     }
                     }
         );
-        ActivityResultLauncher<Intent> launcherCamera = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        Bundle b = result.getData().getExtras();
-                        Bitmap thumbnail = (Bitmap) b.get("data");
-                        imageView.setImageBitmap(thumbnail);
-                    }
-                }
-        );
+        
+        //open gallery action
         galleryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -213,14 +209,8 @@ public class PlantProfilePage extends AppCompatActivity {
                 launcherGallery.launch(intent);
             }
         });
-//        openCamera.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                launcherCamera.launch(intent);
-//
-//            }
-//        });
+
+        //logout button
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
