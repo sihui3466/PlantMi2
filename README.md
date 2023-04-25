@@ -1,6 +1,6 @@
-# PlantMi2
+# PlantMi2 1D Project
 
-Our app is a plant care and watering app.
+Our android app is a plant care and watering app.
 
 Problem:
 
