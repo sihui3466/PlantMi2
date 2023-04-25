@@ -23,7 +23,7 @@ public class HistoryHumid extends AppCompatActivity {
         recyclerView = findViewById(R.id.historyHumidRecyclerView);
         exitBtn = findViewById(R.id.exitbtnHumid);
 
-        RecyclerView.Adapter<HistoryAdapter.HistoryHolder> adapter = new HistoryAdapter(this, LocalDataAdd.historyDataHumid);
+        RecyclerView.Adapter<HistoryAdapter.HistoryHolder> adapter = new HistoryAdapter(this, LocalDataAdd.historyDataSourceHumid);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

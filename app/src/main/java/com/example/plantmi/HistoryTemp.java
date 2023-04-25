@@ -23,7 +23,7 @@ public class HistoryTemp extends AppCompatActivity {
         recyclerView = findViewById(R.id.historyTemperatureRecyclerView);
         exitBtn = findViewById(R.id.exitbtnTemperature);
 
-        RecyclerView.Adapter<HistoryAdapter.HistoryHolder> adapter = new HistoryAdapter(this, LocalDataAdd.historyDataLight);
+        RecyclerView.Adapter<HistoryAdapter.HistoryHolder> adapter = new HistoryAdapter(this, LocalDataAdd.historyDataSourceTemp);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

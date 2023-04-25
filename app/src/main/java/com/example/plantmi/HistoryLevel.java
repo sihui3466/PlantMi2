@@ -23,7 +23,7 @@ public class HistoryLevel extends AppCompatActivity {
         recyclerView = findViewById(R.id.historyLevelRecyclerView);
         exitBtn = findViewById(R.id.exitbtnLevel);
 
-        RecyclerView.Adapter<HistoryAdapter.HistoryHolder> adapter = new HistoryAdapter(this, LocalDataAdd.historyDataLevel);
+        RecyclerView.Adapter<HistoryAdapter.HistoryHolder> adapter = new HistoryAdapter(this, LocalDataAdd.historyDataSourceLevel);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

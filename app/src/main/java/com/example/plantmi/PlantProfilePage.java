@@ -1,6 +1,6 @@
 package com.example.plantmi;
 
-import static com.example.plantmi.LocalDataAdd.historyDataMoisture;
+import static com.example.plantmi.LocalDataAdd.historyDataSourceMoisture;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -42,7 +42,6 @@ import com.squareup.picasso.Picasso;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 
 public class PlantProfilePage extends AppCompatActivity {
     private View plantStatus;
@@ -277,7 +276,7 @@ public class PlantProfilePage extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        historyDataMoisture.clearHistory();
+        historyDataSourceMoisture.clearHistory();
     }
 }
 

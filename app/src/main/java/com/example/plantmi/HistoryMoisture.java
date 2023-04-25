@@ -3,7 +3,6 @@ package com.example.plantmi;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
@@ -24,7 +23,7 @@ public class HistoryMoisture extends AppCompatActivity {
         recyclerView = findViewById(R.id.historyMoistureRecyclerView);
         exitBtn = findViewById(R.id.exitbtnMoisture);
 
-        RecyclerView.Adapter<HistoryAdapter.HistoryHolder> adapter = new HistoryAdapter(this, LocalDataAdd.historyDataMoisture);
+        RecyclerView.Adapter<HistoryAdapter.HistoryHolder> adapter = new HistoryAdapter(this, LocalDataAdd.historyDataSourceMoisture);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
