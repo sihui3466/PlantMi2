@@ -23,7 +23,7 @@ public class HistoryLight extends AppCompatActivity {
         recyclerView = findViewById(R.id.historyLightRecyclerView);
         exitBtn = findViewById(R.id.exitbtnLight);
 
-        RecyclerView.Adapter<HistoryAdapter.HistoryHolder> adapter = new HistoryAdapter(this, LocalDataAdd.historyDataLight);
+        RecyclerView.Adapter<HistoryAdapter.HistoryHolder> adapter = new HistoryAdapter(this, LocalDataAdd.historyDataSourceLight);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

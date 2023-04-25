@@ -15,18 +15,18 @@ import com.google.firebase.database.FirebaseDatabase;
 // class to get history data from firebase to add to local arraylists (to be display in recyclerview in history activity pages)
 public class LocalDataAdd {
     DatabaseReference userHistoryMoisture, userHistoryLight, userHistoryTemp, userHistoryHumid, userHistoryLevel;
-    static HistoryDataMoisture historyDataMoisture;
-    static HistoryDataLight historyDataLight;
-    static HistoryDataTemp historyDataTemp;
-    static HistoryDataHumid historyDataHumid;
-    static HistoryDataLevel historyDataLevel;
+    static HistoryDataSource historyDataSourceMoisture;
+    static HistoryDataSource historyDataSourceLight;
+    static HistoryDataSource historyDataSourceTemp;
+    static HistoryDataSource historyDataSourceHumid;
+    static HistoryDataSource historyDataSourceLevel;
 
     LocalDataAdd(){
-        historyDataMoisture = new HistoryDataMoisture();
-        historyDataLight = new HistoryDataLight();
-        historyDataTemp = new HistoryDataTemp();
-        historyDataHumid = new HistoryDataHumid();
-        historyDataLevel = new HistoryDataLevel();
+        historyDataSourceMoisture = new HistoryDataSource();
+        historyDataSourceLight = new HistoryDataSource();
+        historyDataSourceTemp = new HistoryDataSource();
+        historyDataSourceHumid = new HistoryDataSource();
+        historyDataSourceLevel = new HistoryDataSource();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userUID = user.getUid();
@@ -46,7 +46,7 @@ public class LocalDataAdd {
                 else {
                     for (DataSnapshot dataSnapshot: task.getResult().getChildren()){
                         String s = dataSnapshot.getValue(String.class);
-                        historyDataMoisture.addHistory(s);
+                        historyDataSourceMoisture.addHistory(s);
                         Log.d("addHistMoisture", s);
                     }
                 }
@@ -62,7 +62,7 @@ public class LocalDataAdd {
                 else {
                     for (DataSnapshot dataSnapshot: task.getResult().getChildren()){
                         String s = dataSnapshot.getValue(String.class);
-                        historyDataLight.addHistory(s);
+                        historyDataSourceLight.addHistory(s);
                         Log.d("addHistLight", s);
                     }
                 }
@@ -78,7 +78,7 @@ public class LocalDataAdd {
                 else {
                     for (DataSnapshot dataSnapshot: task.getResult().getChildren()){
                         String s = dataSnapshot.getValue(String.class);
-                        historyDataTemp.addHistory(s);
+                        historyDataSourceTemp.addHistory(s);
                         Log.d("addHistTemp", s);
                     }
                 }
@@ -94,7 +94,7 @@ public class LocalDataAdd {
                 else {
                     for (DataSnapshot dataSnapshot: task.getResult().getChildren()){
                         String s = dataSnapshot.getValue(String.class);
-                        historyDataHumid.addHistory(s);
+                        historyDataSourceHumid.addHistory(s);
                         Log.d("addHistHumid", s);
                     }
                 }
@@ -110,7 +110,7 @@ public class LocalDataAdd {
                 else {
                     for (DataSnapshot dataSnapshot: task.getResult().getChildren()){
                         String s = dataSnapshot.getValue(String.class);
-                        historyDataLevel.addHistory(s);
+                        historyDataSourceLevel.addHistory(s);
                         Log.d("addHistLevel", s);
                     }
                 }
